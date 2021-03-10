@@ -10,29 +10,45 @@ for (let i=0;i<12;i++){
 }
 let coloresAComparar = [];
 let cuadrosAComparar = [];
-$cuadros.forEach(function($cuadro){ 
-    $cuadro.onclick = function(e){
+desbloquearInputUsuario();
+        
 
-        let cuadroClickeado = e.target.id;
-        cuadrosAComparar.push($cuadro);
-        coloresAComparar.push(cuadrosColoreados[cuadroClickeado]);
-        $cuadro.style.setProperty("background-color", `${cuadrosColoreados[cuadroClickeado]}`, "important");
-        if(cuadrosAComparar.length == 2){
-            setTimeout(function(){
-                if(coloresAComparar[0] === coloresAComparar[1]){
-                    cuadrosAComparar[0].style.setProperty("background-color", 'white', "important");
-                    cuadrosAComparar[1].style.setProperty("background-color", 'white', "important");
-                }
-                else{
-                    cuadrosAComparar[0].style.setProperty("background-color", '#6c757d', "important");
-                    cuadrosAComparar[1].style.setProperty("background-color", '#6c757d', "important");
-                }
-    
-                cuadrosAComparar.length = 0;
-                coloresAComparar.length = 0;
-            }, 700);
-            
+function bloquearInputUsuario(){
+    $cuadros.forEach(function($cuadro){
+        $cuadro.onclick = function(){
+
         }
-    }
+    })
+}
 
-})
+function desbloquearInputUsuario(){
+    $cuadros.forEach(function($cuadro){ 
+        $cuadro.onclick = function(e){
+            let cuadroClickeado = e.target.id;
+            cuadrosAComparar.push($cuadro);
+            coloresAComparar.push(cuadrosColoreados[cuadroClickeado]);
+            $cuadro.style.setProperty("background-color", `${cuadrosColoreados[cuadroClickeado]}`, "important");
+            if(cuadrosAComparar.length == 2){
+                comparadorDeCuadros();
+            }
+        }
+    })
+}
+
+
+function comparadorDeCuadros(){
+    bloquearInputUsuario(); 
+    setTimeout(function(){
+        if(coloresAComparar[0] === coloresAComparar[1]){
+            cuadrosAComparar[0].style.setProperty("background-color", 'white', "important");
+            cuadrosAComparar[1].style.setProperty("background-color", 'white', "important");
+        }
+        else{
+            cuadrosAComparar[0].style.setProperty("background-color", '#6c757d', "important");
+            cuadrosAComparar[1].style.setProperty("background-color", '#6c757d', "important");
+            }
+        cuadrosAComparar.length = 0;
+        coloresAComparar.length = 0;
+        desbloquearInputUsuario();
+            }, 700);
+}
