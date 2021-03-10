@@ -18,10 +18,20 @@ $cuadros.forEach(function($cuadro){
         coloresAComparar.push(cuadrosColoreados[cuadroClickeado]);
         $cuadro.style.setProperty("background-color", `${cuadrosColoreados[cuadroClickeado]}`, "important");
         if(cuadrosAComparar.length == 2){
-            //settimeout hasta el tiempo que quiera.
-            if(coloresAComparar[0] === coloresAComparar[1]){
-                cuadrosAComparar[0].style.setProperty("background-color", 'white', "important");
-            }
+            setTimeout(function(){
+                if(coloresAComparar[0] === coloresAComparar[1]){
+                    cuadrosAComparar[0].style.setProperty("background-color", 'white', "important");
+                    cuadrosAComparar[1].style.setProperty("background-color", 'white', "important");
+                }
+                else{
+                    cuadrosAComparar[0].style.setProperty("background-color", '#6c757d', "important");
+                    cuadrosAComparar[1].style.setProperty("background-color", '#6c757d', "important");
+                }
+    
+                cuadrosAComparar.length = 0;
+                coloresAComparar.length = 0;
+            }, 700);
+            
         }
     }
 
