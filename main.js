@@ -2,21 +2,21 @@ let $boton = document.querySelector('.btn');
 let colores = ['red', 'red', 'blue', 'blue', 'yellow', 'yellow', 'green', 'green', 'orange', 'orange', 'pink', 'pink'];
 let $cuadros = document.querySelectorAll('.cuadros');
 let cuadrosColoreados = new Object();
-
-for (let i=0;i<12;i++){
-    const randomIndex = Math.floor(Math.random() * colores.length);
-    cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
-    colores.splice(randomIndex, 1);
-}
 let coloresAComparar = [];
 let cuadrosAComparar = [];
-desbloquearInputUsuario();
-        
+
+$boton.onclick = function(){
+    for (let i=0;i<12;i++){
+        const randomIndex = Math.floor(Math.random() * colores.length);
+        cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
+        colores.splice(randomIndex, 1);
+    }
+    desbloquearInputUsuario();
+}
 
 function bloquearInputUsuario(){
     $cuadros.forEach(function($cuadro){
         $cuadro.onclick = function(){
-
         }
     })
 }
