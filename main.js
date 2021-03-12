@@ -24,17 +24,20 @@ function bloquearInputUsuario(){
 function desbloquearInputUsuario(){
     $cuadros.forEach(function($cuadro){ 
         $cuadro.onclick = function(e){
-            let cuadroClickeado = e.target.id;
-            cuadrosAComparar.push($cuadro);
-            coloresAComparar.push(cuadrosColoreados[cuadroClickeado]);
-            $cuadro.style.setProperty("background-color", `${cuadrosColoreados[cuadroClickeado]}`, "important");
-            if(cuadrosAComparar.length == 2){
-                comparadorDeCuadros();
+            const WHITE_BACKGROUND = 'rgb(255, 255, 255)';
+            if (window.getComputedStyle($cuadro)['background-color'] != WHITE_BACKGROUND){
+                let cuadroClickeado = e.target.id;
+                bloquearCuadroClickeado($cuadro);
+                cuadrosAComparar.push($cuadro);
+                coloresAComparar.push(cuadrosColoreados[cuadroClickeado]);
+                $cuadro.style.setProperty("background-color", `${cuadrosColoreados[cuadroClickeado]}`, "important");
+                if(cuadrosAComparar.length == 2){
+                    comparadorDeCuadros();
+                }
             }
         }
     })
 }
-
 
 function comparadorDeCuadros(){
     bloquearInputUsuario(); 
@@ -51,4 +54,10 @@ function comparadorDeCuadros(){
         coloresAComparar.length = 0;
         desbloquearInputUsuario();
             }, 700);
+}
+
+function bloquearCuadroClickeado($cuadro){
+    $cuadro.onclick = function (){
+
+    }
 }
