@@ -4,8 +4,12 @@ let $cuadros = document.querySelectorAll('.cuadros');
 let cuadrosColoreados = new Object();
 let coloresAComparar = [];
 let cuadrosAComparar = [];
+let tiempoCronometro = null;
+let cuadrosGanados = [];
 
 $boton.onclick = function(){
+    empezarCronometro();
+    $boton.setAttribute('disabled', '');
     for (let i=0;i<12;i++){
         const randomIndex = Math.floor(Math.random() * colores.length);
         cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
@@ -45,6 +49,11 @@ function comparadorDeCuadros(){
         if(coloresAComparar[0] === coloresAComparar[1]){
             cuadrosAComparar[0].style.setProperty("background-color", 'white', "important");
             cuadrosAComparar[1].style.setProperty("background-color", 'white', "important");
+            cuadrosGanados.push(cuadrosAComparar[0]);
+            cuadrosGanados.push(cuadrosAComparar[1]);
+            if (cuadrosGanados.length == 12){
+                pararCronometro();
+            }
         }
         else{
             cuadrosAComparar[0].style.setProperty("background-color", '#6c757d', "important");
@@ -53,11 +62,24 @@ function comparadorDeCuadros(){
         cuadrosAComparar.length = 0;
         coloresAComparar.length = 0;
         desbloquearInputUsuario();
-            }, 700);
+            }, 500);
 }
 
 function bloquearCuadroClickeado($cuadro){
     $cuadro.onclick = function (){
 
     }
+}
+
+function empezarCronometro(){
+    valor = 0;
+    tiempoCronometro = setInterval(cambiarValorDeCronometro, 1000);
+}
+
+function cambiarValorDeCronometro(){
+    document.querySelector('span').innerHTML = `${++valor} segundos`;
+}
+
+function pararCronometro(){
+    clearInterval(tiempoCronometro);
 }
