@@ -16,8 +16,7 @@ $boton.onclick = function(){
         cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
         colores.splice(randomIndex, 1);
     }
-    desbloquearInputUsuario();
-      
+    desbloquearInputUsuario();     
 }
 
 function bloquearInputUsuario(){
@@ -55,7 +54,7 @@ function comparadorDeCuadros(){
             cuadrosGanados.push(cuadrosAComparar[1]);
             if (cuadrosGanados.length == 12){
                 pararCronometro();
-                window.location.replace("./segundaPagina.html");
+                // ocultar todo y poenr que gano todo en otra funcion
                 return;
             } 
         }
@@ -87,6 +86,7 @@ function pararCronometro(){
     clearInterval(tiempoCronometro);
 }
 
-function retornarTiempoCronometro(){
+function retornarTiempoCronometro(){ //quizas borrarlo porque es alpedo
     return valorDeCronometro;
 }
+
