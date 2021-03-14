@@ -6,6 +6,7 @@ let coloresAComparar = [];
 let cuadrosAComparar = [];
 let tiempoCronometro = null;
 let cuadrosGanados = [];
+let valorDeCronometro = 0;
 
 $boton.onclick = function(){
     empezarCronometro();
@@ -16,6 +17,7 @@ $boton.onclick = function(){
         colores.splice(randomIndex, 1);
     }
     desbloquearInputUsuario();
+      
 }
 
 function bloquearInputUsuario(){
@@ -53,7 +55,9 @@ function comparadorDeCuadros(){
             cuadrosGanados.push(cuadrosAComparar[1]);
             if (cuadrosGanados.length == 12){
                 pararCronometro();
-            }
+                window.location.replace("./segundaPagina.html");
+                return;
+            } 
         }
         else{
             cuadrosAComparar[0].style.setProperty("background-color", '#6c757d', "important");
@@ -72,14 +76,17 @@ function bloquearCuadroClickeado($cuadro){
 }
 
 function empezarCronometro(){
-    valor = 0;
     tiempoCronometro = setInterval(cambiarValorDeCronometro, 1000);
 }
 
 function cambiarValorDeCronometro(){
-    document.querySelector('span').innerHTML = `${++valor} segundos`;
+    document.querySelector('span').innerHTML = `${++valorDeCronometro} segundos`;
 }
 
 function pararCronometro(){
     clearInterval(tiempoCronometro);
+}
+
+function retornarTiempoCronometro(){
+    return valorDeCronometro;
 }
