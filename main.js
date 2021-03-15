@@ -7,10 +7,11 @@ let cuadrosAComparar = [];
 let tiempoCronometro = null;
 let cuadrosGanados = [];
 let valorDeCronometro = 0;
+const $filas = document.querySelectorAll('.filas');
 
 $boton.onclick = function(){
     empezarCronometro();
-    document.querySelector('button').style.visibility = 'hidden';
+    document.querySelector('button').style.display = 'none';
     for (let i=0;i<12;i++){
         const randomIndex = Math.floor(Math.random() * colores.length);
         cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
@@ -54,7 +55,7 @@ function comparadorDeCuadros(){
             cuadrosGanados.push(cuadrosAComparar[1]);
             if (cuadrosGanados.length == 12){
                 pararCronometro();
-                // ocultar todo y poenr que gano todo en otra funcion
+                ocultarCuadros();
                 return;
             } 
         }
@@ -88,4 +89,10 @@ function pararCronometro(){
 
 function retornarTiempoCronometro(){ 
     return valorDeCronometro;
+}
+
+function ocultarCuadros(){
+    $filas.forEach(function($fila){
+        $fila.style.display = 'none';
+    })
 }
