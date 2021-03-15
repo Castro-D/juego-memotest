@@ -10,7 +10,7 @@ let valorDeCronometro = 0;
 
 $boton.onclick = function(){
     empezarCronometro();
-    $boton.setAttribute('disabled', '');
+    document.querySelector('button').style.visibility = 'hidden';
     for (let i=0;i<12;i++){
         const randomIndex = Math.floor(Math.random() * colores.length);
         cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
@@ -86,7 +86,6 @@ function pararCronometro(){
     clearInterval(tiempoCronometro);
 }
 
-function retornarTiempoCronometro(){ //quizas borrarlo porque es alpedo
+function retornarTiempoCronometro(){ 
     return valorDeCronometro;
 }
-
