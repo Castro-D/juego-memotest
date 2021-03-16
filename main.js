@@ -1,4 +1,4 @@
-let $boton = document.querySelector('.btn');
+let $boton = document.querySelector('#boton-inicio');
 let colores = ['red', 'red', 'blue', 'blue', 'yellow', 'yellow', 'green', 'green', 'orange', 'orange', 'pink', 'pink'];
 let $cuadros = document.querySelectorAll('.cuadros');
 let cuadrosColoreados = new Object();
@@ -7,10 +7,11 @@ let cuadrosAComparar = [];
 let tiempoCronometro = null;
 let cuadrosGanados = [];
 let valorDeCronometro = 0;
+const $filas = document.querySelectorAll('.filas');
 
 $boton.onclick = function(){
     empezarCronometro();
-    document.querySelector('button').style.visibility = 'hidden';
+    document.querySelector('#boton-inicio').style.display = 'none';
     for (let i=0;i<12;i++){
         const randomIndex = Math.floor(Math.random() * colores.length);
         cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
@@ -54,7 +55,9 @@ function comparadorDeCuadros(){
             cuadrosGanados.push(cuadrosAComparar[1]);
             if (cuadrosGanados.length == 12){
                 pararCronometro();
-                // ocultar todo y poenr que gano todo en otra funcion
+                ocultarCuadros();
+                mostrarMensajeDeVictoria();
+                mostrarBotonReinicio();
                 return;
             } 
         }
@@ -88,4 +91,18 @@ function pararCronometro(){
 
 function retornarTiempoCronometro(){ 
     return valorDeCronometro;
+}
+
+function ocultarCuadros(){
+    $filas.forEach(function($fila){
+        $fila.style.display = 'none';
+    })
+}
+
+function mostrarMensajeDeVictoria(){
+    document.querySelector('.mensaje').classList.remove("d-none");
+}
+
+function mostrarBotonReinicio(){
+    document.querySelector('#boton-reinicio').classList.remove('d-none');
 }
