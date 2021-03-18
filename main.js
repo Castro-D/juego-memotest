@@ -64,8 +64,8 @@ function comparadorDeCuadros(){
             } 
         }
         else{
-            cuadrosAComparar[0].style.setProperty("background-color", '#6c757d', "important");
-            cuadrosAComparar[1].style.setProperty("background-color", '#6c757d', "important");
+            cuadrosAComparar[0].classList.add('cuadro-gris');
+            cuadrosAComparar[1].classList.add('cuadro-gris');
             }
         cuadrosAComparar = [];
         coloresAComparar = [];
