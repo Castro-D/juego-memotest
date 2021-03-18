@@ -34,11 +34,6 @@ function bloquearInputUsuario(){
 function desbloquearInputUsuario(){
     $cuadros.forEach(function($cuadro){ 
         $cuadro.onclick = function(e){
-            /*
-            const WHITE_BACKGROUND = 'rgb(255, 255, 255)';
-            if (window.getComputedStyle($cuadro)['background-color'] != WHITE_BACKGROUND){
-            capaz me esta jodiendo el !imporatnt en todos lados
-            */
             if (!$cuadro.classList.contains('cuadro-blanco')){
                 let cuadroClickeado = e.target.id;
                 bloquearCuadroClickeado($cuadro);
@@ -60,10 +55,6 @@ function comparadorDeCuadros(){
         if(coloresAComparar[0] === coloresAComparar[1]){
             cuadrosAComparar[0].classList.add('cuadro-blanco');
             cuadrosAComparar[1].classList.add('cuadro-blanco');
-            /*
-            cuadrosAComparar[0].style.setProperty("background-color", 'white', "important");
-            cuadrosAComparar[1].style.setProperty("background-color", 'white', "important");
-            */
             cuadrosGanados.push(cuadrosAComparar[0]);
             cuadrosGanados.push(cuadrosAComparar[1]);
             if (cuadrosGanados.length == 12){
