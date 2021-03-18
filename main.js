@@ -26,8 +26,7 @@ $boton.onclick = function(){
 
 function bloquearInputUsuario(){
     $cuadros.forEach(function($cuadro){
-        $cuadro.onclick = function(){
-        }
+        bloquearCuadro($cuadro);
     })
 }
 
@@ -36,7 +35,7 @@ function desbloquearInputUsuario(){
         $cuadro.onclick = function(e){
             if (!$cuadro.classList.contains('cuadro-blanco')){
                 let cuadroClickeado = e.target.id;
-                bloquearCuadroClickeado($cuadro);
+                bloquearCuadro($cuadro);
                 cuadrosAComparar.push($cuadro);
                 coloresAComparar.push(cuadrosColoreados[cuadroClickeado]);
                 $cuadro.classList.remove('cuadro-gris');
@@ -68,15 +67,14 @@ function comparadorDeCuadros(){
             cuadrosAComparar[0].style.setProperty("background-color", '#6c757d', "important");
             cuadrosAComparar[1].style.setProperty("background-color", '#6c757d', "important");
             }
-        cuadrosAComparar.length = 0;
-        coloresAComparar.length = 0;
+        cuadrosAComparar = [];
+        coloresAComparar = [];
         desbloquearInputUsuario();
             }, 500);
 }
 
-function bloquearCuadroClickeado($cuadro){
+function bloquearCuadro($cuadro){
     $cuadro.onclick = function (){
-
     }
 }
 
