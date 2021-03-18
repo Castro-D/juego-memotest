@@ -12,7 +12,7 @@ const $filas = document.querySelectorAll('.filas');
 $boton.onclick = function(){
     empezarCronometro();
     document.querySelector('#boton-inicio').style.display = 'none';
-    for (let i=0;i<12;i++){
+    for (let i=0;i<$cuadros.length;i++){
         const randomIndex = Math.floor(Math.random() * colores.length);
         cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
         colores.splice(randomIndex, 1);
