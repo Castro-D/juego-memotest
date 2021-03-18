@@ -55,8 +55,7 @@ function comparadorDeCuadros(){
         if(coloresAComparar[0] === coloresAComparar[1]){
             cuadrosAComparar[0].classList.add('cuadro-blanco');
             cuadrosAComparar[1].classList.add('cuadro-blanco');
-            cuadrosGanados.push(cuadrosAComparar[0]);
-            cuadrosGanados.push(cuadrosAComparar[1]);
+            cuadrosGanados.push(cuadrosAComparar[0], cuadrosAComparar[1]);
             if (cuadrosGanados.length == 12){
                 pararCronometro();
                 ocultarCuadros();
