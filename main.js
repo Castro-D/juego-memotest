@@ -9,9 +9,13 @@ let cuadrosGanados = [];
 let valorDeCronometro = 0;
 const $filas = document.querySelectorAll('.filas');
 
+$cuadros.forEach(function($cuadro){
+    $cuadro.classList.add('cuadro-gris');
+})
+
 $boton.onclick = function(){
     empezarCronometro();
-    document.querySelector('#boton-inicio').style.display = 'none';
+    document.querySelector('#boton-inicio').classList.add('d-none');
     for (let i=0;i<$cuadros.length;i++){
         const randomIndex = Math.floor(Math.random() * colores.length);
         cuadrosColoreados[`cuadro-${i+1}`] = colores[randomIndex];
@@ -30,13 +34,18 @@ function bloquearInputUsuario(){
 function desbloquearInputUsuario(){
     $cuadros.forEach(function($cuadro){ 
         $cuadro.onclick = function(e){
+            /*
             const WHITE_BACKGROUND = 'rgb(255, 255, 255)';
             if (window.getComputedStyle($cuadro)['background-color'] != WHITE_BACKGROUND){
+            capaz me esta jodiendo el !imporatnt en todos lados
+            */
+            if (!$cuadro.classList.contains('cuadro-blanco')){
                 let cuadroClickeado = e.target.id;
                 bloquearCuadroClickeado($cuadro);
                 cuadrosAComparar.push($cuadro);
                 coloresAComparar.push(cuadrosColoreados[cuadroClickeado]);
-                $cuadro.style.setProperty("background-color", `${cuadrosColoreados[cuadroClickeado]}`, "important");
+                $cuadro.classList.remove('cuadro-gris');
+                $cuadro.style.backgroundColor = cuadrosColoreados[cuadroClickeado];
                 if(cuadrosAComparar.length == 2){
                     comparadorDeCuadros();
                 }
@@ -49,8 +58,12 @@ function comparadorDeCuadros(){
     bloquearInputUsuario(); 
     setTimeout(function(){
         if(coloresAComparar[0] === coloresAComparar[1]){
+            cuadrosAComparar[0].classList.add('cuadro-blanco');
+            cuadrosAComparar[1].classList.add('cuadro-blanco');
+            /*
             cuadrosAComparar[0].style.setProperty("background-color", 'white', "important");
             cuadrosAComparar[1].style.setProperty("background-color", 'white', "important");
+            */
             cuadrosGanados.push(cuadrosAComparar[0]);
             cuadrosGanados.push(cuadrosAComparar[1]);
             if (cuadrosGanados.length == 12){
