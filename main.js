@@ -10,7 +10,7 @@ let valorDeCronometro = 0;
 const $filas = document.querySelectorAll('.filas');
 
 $cuadros.forEach(function($cuadro){
-    $cuadro.classList.add('cuadro-gris');
+    $cuadro.classList.add('bg-secondary');
 })
 
 $boton.onclick = function(){
@@ -33,12 +33,12 @@ function bloquearInputUsuario(){
 function desbloquearInputUsuario(){
     $cuadros.forEach(function($cuadro){ 
         $cuadro.onclick = function(e){
-            if (!$cuadro.classList.contains('cuadro-blanco')){
+            if (!$cuadro.classList.contains('bg-white')){
                 let cuadroClickeado = e.target.id;
                 bloquearCuadro($cuadro);
                 cuadrosAComparar.push($cuadro);
                 coloresAComparar.push(cuadrosColoreados[cuadroClickeado]);
-                $cuadro.classList.remove('cuadro-gris');
+                $cuadro.classList.remove('bg-secondary');
                 $cuadro.style.backgroundColor = cuadrosColoreados[cuadroClickeado];
                 if(cuadrosAComparar.length == 2){
                     comparadorDeCuadros();
@@ -52,8 +52,8 @@ function comparadorDeCuadros(){
     bloquearInputUsuario(); 
     setTimeout(function(){
         if(coloresAComparar[0] === coloresAComparar[1]){
-            cuadrosAComparar[0].classList.add('cuadro-blanco');
-            cuadrosAComparar[1].classList.add('cuadro-blanco');
+            cuadrosAComparar[0].classList.add('bg-white');
+            cuadrosAComparar[1].classList.add('bg-white');
             cuadrosGanados.push(cuadrosAComparar[0], cuadrosAComparar[1]);
             if (cuadrosGanados.length == 12){
                 pararCronometro();
@@ -64,8 +64,8 @@ function comparadorDeCuadros(){
             } 
         }
         else{
-            cuadrosAComparar[0].classList.add('cuadro-gris');
-            cuadrosAComparar[1].classList.add('cuadro-gris');
+            cuadrosAComparar[0].classList.add('bg-secondary');
+            cuadrosAComparar[1].classList.add('bg-secondary');
             }
         cuadrosAComparar = [];
         coloresAComparar = [];
