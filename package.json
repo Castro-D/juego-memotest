@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Castro-D/juego-memotest#readme",
   "dependencies": {
     "bootstrap": "^4.6.0"
+  },
+  "devDependencies": {
+    "cypress": "^6.8.0"
   }
 }
